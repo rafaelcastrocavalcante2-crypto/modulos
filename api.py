@@ -17,4 +17,4 @@ def listar_tarefas():
 def criar_tarefa(tarefa: Tarefa):
     tarefa_dict = tarefa.model_dump() 
     banco_de_dados.append(tarefa_dict)    
-    return {"mensagem": "olá mundo", "dados": tarefa_dict}
+    return {"mensagem": "tarefa criada com sucesso", "dados": tarefa_dict}
