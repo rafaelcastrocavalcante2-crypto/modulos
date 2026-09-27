@@ -1,23 +1,25 @@
-import requests
 import json
 
+try:
+    import requests
+    def buscar_cep(cep):
 
-def buscar_cep(cep):
+        if cep.isdigit():
+            print("CEP valido")
+        else:
+            return "CEP invalido"
 
-    if cep.isdigit():
-        print("CEP valido")
-    else:
-        return "CEP invalido"
+        url = f'https://viacep.com.br/ws/{cep}/json/'
+        resposta = requests.get(url)
+        print(f'Erro da API: {resposta.status_code}')
+        if resposta.status_code == 200:
+            endereco  = resposta.json()           
+        else:
+            endereco = 'CEP nao encontrado'
 
-    url = f'https://viacep.com.br/ws/{cep}/json/'
-    resposta = requests.get(url)
-    print(f'Erro da API: {resposta.status_code}')
-    if resposta.status_code == 200:
-           endereco  = resposta.json()           
-    else:
-          endereco = 'CEP nao encontrado'
-
-    return endereco
+        return endereco
+except ValueError:
+    print("Erro: Por favor, digite apenas números.")
 
     
 print("CEP - Consulta API")
